@@ -6,6 +6,20 @@
   margin: 0;
 }
 
-div.bodyContainer {
+/* div.bodyContainer {
   margin-top: 50px;
+} */
+
+.auth-content {
+  height: 450px;
+}
+
+.tabs a {
+  color: #64b5f6;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tabs .active {
+  background-color: inherit !important;
 }
