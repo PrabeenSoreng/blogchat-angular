@@ -4,6 +4,7 @@
 #signupbtn {
   float: left;
   margin-right: 10px;
+  margin-bottom: 15px;
   background-color: #64b5f6;
   font-weight: 500;
 }

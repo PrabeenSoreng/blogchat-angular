@@ -1,27 +1,62 @@
 <div class="container">
-  <div class="row">
+  <div class="row signup-row">
     <div class="col s10 offset-s1" id="panel">
       <h3 id="title">Signup</h3>
-      <form class="col s12">
+      <div id="errorMsg" *ngIf="errorMessage">
+        <span>{{ errorMessage }}</span>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input id="username" type="text" />
-            <label for="username">Username</label>
+            <input
+              id="signup-username"
+              type="text"
+              formControlName="username"
+            />
+            <label for="signup-username">Username</label>
+            <div *ngIf="username.touched && username.invalid">
+              <span *ngIf="username.errors.required" class="error">
+                Username is required.
+              </span>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" />
-            <label for="email">Email</label>
+            <input id="signup-email" type="email" formControlName="email" />
+            <label for="signup-email">Email</label>
+            <div *ngIf="email.touched && email.invalid">
+              <span *ngIf="email.errors.required" class="error">
+                Email is required.
+              </span>
+              <span *ngIf="email.errors.email" class="error">
+                Email is invalid.
+              </span>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="password" type="password" />
-            <label for="password">Password</label>
+            <input
+              id="signup-password"
+              type="password"
+              formControlName="password"
+            />
+            <label for="signup-password">Password</label>
+            <div *ngIf="password.touched && password.invalid">
+              <span *ngIf="password.errors.required" class="error">
+                Password is required.
+              </span>
+              <span *ngIf="password.errors.minlength" class="error">
+                Minimum length is
+                {{ password.errors.minlength.requiredLength }}.
+              </span>
+            </div>
           </div>
         </div>
-        <button class="btn waves-effect" id="signupbtn">Signup</button>
+        <button class="btn waves-effect" id="signupbtn" type="submit">
+          Signup
+        </button>
       </form>
     </div>
   </div>
