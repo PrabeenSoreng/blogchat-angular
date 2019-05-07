@@ -3,7 +3,8 @@ import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: "", loadChildren: "./auth/auth.module#AuthModule" }
+  { path: "", loadChildren: "./auth/auth.module#AuthModule" },
+  { path: "streams", loadChildren: "./streams/streams.module#StreamsModule" }
 ];
 
 @NgModule({
