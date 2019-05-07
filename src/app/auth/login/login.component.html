@@ -2,20 +2,49 @@
   <div class="row">
     <div class="col s10 offset-s1" id="panel">
       <h3 id="title">Login</h3>
-      <form class="col s12">
+      <div class="error__msg">
+        <div class="error__msg--element" *ngFor="let msg of errorMessage">
+          <span>{{ msg }}</span>
+        </div>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input id="login-email" type="email" />
+            <input id="login-email" type="email" formControlName="email" />
             <label for="login-email">Email</label>
+            <div *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors.email" class="error">
+                Email is invalid.
+              </div>
+              <div *ngIf="email.errors.required" class="error">
+                Email is required.
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="login-password" type="password" />
+            <input
+              id="login-password"
+              type="password"
+              formControlName="password"
+            />
             <label for="login-password">Password</label>
+            <div *ngIf="password.touched && password.invalid">
+              <div *ngIf="password.errors.required" class="error">
+                Password is required.
+              </div>
+            </div>
           </div>
         </div>
-        <button class="btn waves-effect" id="loginbtn">Login</button>
+        <button
+          class="btn waves-effect"
+          id="loginbtn"
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          Login
+        </button>
       </form>
     </div>
   </div>

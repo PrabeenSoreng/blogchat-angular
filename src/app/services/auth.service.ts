@@ -13,4 +13,8 @@ export class AuthService {
   signup(body) {
     return this.http.post(`${url}/signup`, body);
   }
+
+  login(body) {
+    return this.http.post(`${url}/login`, body);
+  }
 }
