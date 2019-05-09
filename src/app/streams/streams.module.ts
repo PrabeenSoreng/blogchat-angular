@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { StreamsComponent } from "./streams.component";
 import { StreamsRoutingModule } from "./streams-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TokenService } from "../services/token.service";
 
 @NgModule({
   declarations: [StreamsComponent],
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     ReactiveFormsModule,
     StreamsRoutingModule
-  ]
+  ],
+  providers: [TokenService]
 })
 export class StreamsModule {}

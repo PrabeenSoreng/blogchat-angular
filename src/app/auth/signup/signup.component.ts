@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { TokenService } from "src/app/services/token.service";
 
 @Component({
   selector: "app-signup",
@@ -12,7 +13,11 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   errorMessage: string[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -27,8 +32,9 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.authService.signup(this.signupForm.value).subscribe(
-      result => {
+      (result: any) => {
         console.log(result);
+        this.tokenService.setToken(result.token);
         this.router.navigate(["/streams"]);
       },
       err => {
